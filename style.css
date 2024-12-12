@@ -1,0 +1,174 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(circle, #000000, #111111);
+    margin: 0;
+    overflow: hidden;
+    color: white;
+  }
+  
+  .neon-title {
+    font-size: 2.5rem;
+    color: #00ffff;
+    text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 45px #00ffff;
+    margin-bottom: 15px;
+    animation: neon-pulse 2s infinite;
+  }
+  
+  /* Game Container */
+  .game-container {
+    text-align: center;
+  }
+  
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
+    gap: 15px;
+    margin: 20px auto;
+  }
+  
+  .cell {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #000000, #222222);
+    border: 3px solid #00ffff;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffff;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .cell.X {
+    color: #ff4040;
+    text-shadow: 0 0 15px #ff4040, 0 0 25px #ff4040;
+  }
+  
+  .cell.O {
+    color: #4080ff;
+    text-shadow: 0 0 15px #4080ff, 0 0 25px #4080ff;
+  }
+  
+  .cell.taken {
+    pointer-events: none;
+  }
+  
+  .cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00ffff;
+  }
+  
+  .options, .result {
+    margin: 15px 0;
+  }
+  
+  .neon-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: black;
+    color: #00ffff;
+    border: 2px solid #00ffff;
+    cursor: pointer;
+    text-shadow: 0 0 10px #00ffff;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .neon-button:hover {
+    background: #00ffff;
+    color: black;
+    text-shadow: none;
+  }
+  
+  .restart {
+    display: none;
+    margin-top: 15px;
+  }
+  
+  /* Rockets */
+  #rockets {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+  
+  .rocket {
+    width: 40px;
+    height: 80px;
+    background: red;
+    margin: 0 10px;
+    display: inline-block;
+    position: relative;
+    animation: fly 1.5s ease-in-out forwards;
+  }
+  
+  .rocket::after {
+    content: '';
+    width: 10px;
+    height: 50px;
+    background: orange;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: trail 1.5s ease-in-out infinite;
+  }
+  
+  .explosion {
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, red, yellow, transparent);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: explode 1s forwards;
+  }
+  
+  @keyframes explode {
+    0% {
+      transform: scale(0);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes neon-pulse {
+    0%, 100% {
+      text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 45px #00ffff;
+    }
+    50% {
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    }
+  }
+  
+  @keyframes fly {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-800px);
+    }
+  }
+  
+  @keyframes trail {
+    0% {
+      height: 50px;
+    }
+    100% {
+      height: 0;
+    }
+  }
+  
